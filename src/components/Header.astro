@@ -1,0 +1,42 @@
+---
+import site from '../data/site.json';
+import { href, otherLang, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** The same page in the other language. */
+  switchTo: string;
+}
+const { lang, switchTo } = Astro.props;
+const t = ui[lang];
+const other = otherLang(lang);
+const path = Astro.url.pathname;
+const items = (['projects', 'publications', 'notes', 'about'] as const).map((key) => ({
+  label: t.nav[key],
+  href: href(lang, `/${key}/`),
+}));
+---
+
+<header class="site-header">
+  <a class="site-name" href={href(lang, '/')} aria-current={path === href(lang, '/') ? 'page' : undefined}>{site.name[lang]}</a>
+  <nav aria-label={t.navLabel}>
+    <ul>
+      {
+        items.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              lang={lang === 'ja' ? 'en' : undefined}
+              aria-current={path === item.href ? 'page' : path.startsWith(item.href) ? 'true' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href={switchTo} hreflang={other} lang={other} aria-label={t.switchLabel}>{t.switchText}</a>
+      </li>
+    </ul>
+  </nav>
+</header>

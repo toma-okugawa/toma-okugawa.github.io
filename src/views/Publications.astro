@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { getPublications } from '../lib/content';
+import { pick, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const groups = await getPublications();
+const researchmap = site.links.find((l) => l.label === 'researchmap')?.url ?? 'https://researchmap.jp/t_okugawa';
+const self = new Set([site.name.ja, site.name.en]);
+/** Text written in Japanese gets lang="ja" on the English page, and Latin-only text lang="en" on the Japanese page. */
+const textLang = (s: string) => {
+  const own = /[぀-ヿ㐀-鿿]/.test(s) ? 'ja' : 'en';
+  return own === lang ? undefined : own;
+};
+---
+
+<Base lang={lang} title={t.publications.title} description={t.publications.description}>
+  <h1>{t.publications.title}</h1>
+  {
+    groups.map(([type, items]) => (
+      <section aria-labelledby={type}>
+        <h2 id={type}>{t.publications[type]}</h2>
+        <ul class="list">
+          {items.map(({ data: p }) => {
+            const title = pick(p.title, lang);
+            const venue = pick(p.venue, lang);
+            const note = pick(p.note, lang);
+            const authors = pick(p.authors, lang).split(/,\s*/);
+            return (
+              <li>
+                <span lang={textLang(title)}>{title}</span>
+                <p class="meta" lang={textLang(authors.join(', '))}>
+                  {authors.map((a, i) => (
+                    <>
+                      {i > 0 && ', '}
+                      {self.has(a) ? <strong>{a}</strong> : a}
+                    </>
+                  ))}
+                </p>
+                <p class="meta">
+                  <span lang={textLang(venue)}>{venue}</span>, <span class="mono">{p.year}</span>
+                  {p.doi && (
+                    <>
+                      {' · DOI '}
+                      <a href={`https://doi.org/${p.doi}`} class="mono">
+                        {p.doi}
+                      </a>
+                    </>
+                  )}
+                  {p.url && (
+                    <>
+                      {' · '}
+                      <a href={p.url}>URL</a>
+                    </>
+                  )}
+                </p>
+                {note && <p class="meta">{note}</p>}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))
+  }
+  <p class="muted">
+    <a href={researchmap}>{t.publications.more}</a>
+  </p>
+</Base>

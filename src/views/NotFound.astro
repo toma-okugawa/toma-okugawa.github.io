@@ -1,0 +1,20 @@
+---
+/**
+ * GitHub Pages serves one /404.html for every missing address, in either language,
+ * so this page says it in both.
+ */
+import Base from '../layouts/Base.astro';
+import { ui } from '../i18n';
+
+const ja = ui.ja.notFound;
+const en = ui.en.notFound;
+---
+
+<Base lang="ja" title={`${ja.title} / ${en.title}`} description={ja.text} translation="/en/" translated={false} noindex>
+  <h1>{ja.title}</h1>
+  <p>{ja.text} <a href="/">{ja.home}</a></p>
+  <div lang="en">
+    <h2>{en.title}</h2>
+    <p>{en.text} <a href="/en/">{en.home}</a></p>
+  </div>
+</Base>

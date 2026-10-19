@@ -1,0 +1,32 @@
+---
+import site from '../data/site.json';
+import { href, pick, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <ul class="inline">
+    {
+      site.links.map((l) => (
+        <li>
+          <a href={l.url}>{pick(l.label, lang)}</a>
+        </li>
+      ))
+    }
+    {
+      site.email && (
+        <li>
+          <a href={`mailto:${site.email}`}>{t.email}</a>
+        </li>
+      )
+    }
+    <li><a href={href(lang, '/rss.xml')}>{t.footer.rss}</a></li>
+  </ul>
+  <p>© {year > 2026 ? `2026–${year}` : year} {site.name[lang]}</p>
+</footer>

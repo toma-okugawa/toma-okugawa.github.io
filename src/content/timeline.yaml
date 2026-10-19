@@ -1,0 +1,166 @@
+# 経歴 / Timeline — the list on the About page.
+#
+# id:      unique, lowercase letters, digits and hyphens
+# date:    YYYY-MM. The page shows the newest first.
+# order:   optional tie-breaker for items in the same month (smaller first; then by id)
+# kind:    education | research | award | program | other
+# text:    ja: and en:
+# project: optional slug of a project page (/projects/<slug>/) — the text then links there
+# url:     optional external source, used when there is no project
+
+- id: gcce-2026
+  date: 2026-10
+  order: 1
+  kind: research
+  text:
+    ja: IEEE GCCE 2026 に論文が採択（井下 敬翔と共著、発表予定）
+    en: Paper accepted at IEEE GCCE 2026 (with Keito Inoshita; to appear)
+  project: vanishing-municipalities
+
+- id: swc-kyushu-2026
+  date: 2026-10
+  order: 2
+  kind: award
+  text:
+    ja: スタートアップワールドカップ 2026 九州予選 ユースピッチコンテスト 第3位（Kyudo AI、2名のチーム）
+    en: 3rd place, Startup World Cup 2026 Kyushu Regional Youth Pitch Contest (Kyudo AI, team of two)
+  project: kyudo-ai
+
+- id: procon-2026
+  date: 2026-10
+  order: 3
+  kind: award
+  text:
+    ja: 全国高等専門学校プログラミングコンテスト 2026 自由部門 敢闘賞（5名のチーム）
+    en: Fighting Spirit Prize, Original Section, KOSEN Programming Contest 2026 (team of five)
+
+- id: llp-nagoya-2026
+  date: 2026-09
+  kind: award
+  text:
+    ja: リーンローンチパッド名古屋 2026 最優秀賞（チーム「Beacon」の3名で Kyudo AI を提案）
+    en: Grand Prize, Lean Launchpad Nagoya 2026 (Kyudo AI, proposed by the three-person team “Beacon”)
+  project: kyudo-ai
+
+- id: ieice
+  date: 2026-08
+  kind: other
+  text:
+    ja: 電子情報通信学会に入会
+    en: Joined the Institute of Electronics, Information and Communication Engineers (IEICE)
+
+- id: tongali-2026
+  date: 2026-06
+  order: 1
+  kind: award
+  text:
+    ja: Tongali ビジネスプランコンテスト 2026 で NICT賞・JR東海賞・Beyond Next Ventures賞・Tongali賞 5位（Beacon、3名のチーム）
+    en: NICT Award, JR Central Award, Beyond Next Ventures Award and Tongali Award 5th place, Tongali Business Plan Contest 2026 (Beacon, team of three)
+  project: beacon
+
+- id: sd-retinex
+  date: 2026-06
+  order: 2
+  kind: research
+  text:
+    ja: SD-Retinex の論文・コード・評価結果を公開
+    en: Released the SD-Retinex paper, code and evaluation results
+  project: sd-retinex
+
+- id: sushitech-2026
+  date: 2026-04
+  kind: award
+  text:
+    ja: SusHi Tech Teen Challenge 2026 セミファイナリスト（個人事業主 Second の事業案）
+    en: Semifinalist, SusHi Tech Teen Challenge 2026 (a business plan from my sole proprietorship, Second)
+
+- id: second
+  date: 2026-01
+  kind: other
+  text:
+    ja: 個人事業主「Second」を開業し、高専生によるプログラミング教育に挑戦（2026年5月に廃業。その経験を EdArXiv のプレプリントにまとめた）
+    en: Founded Second, a sole proprietorship for programming education by a KOSEN student (closed in May 2026; the lessons became an EdArXiv preprint)
+
+- id: joi-2026
+  date: 2025-12
+  kind: award
+  text:
+    ja: 日本情報オリンピック（JOI）予選 敢闘賞
+    en: Fighting Spirit Prize, Japanese Olympiad in Informatics (JOI), preliminary round
+  url: https://www.ioi-jp.org/joi-2026/tournament_info
+
+- id: singapore
+  date: 2025-11
+  order: 1
+  kind: program
+  text:
+    ja: LEADING EDGE 四国の海外研修でシンガポールへ。NUS で FSSR と XCR を発表
+    en: Overseas programme of LEADING EDGE Shikoku in Singapore; presented FSSR and XCR at NUS
+
+- id: jxiv
+  date: 2025-11
+  order: 2
+  kind: research
+  text:
+    ja: FSSR と XCR のプレプリントを Jxiv で公開
+    en: Released the FSSR and XCR preprints on Jxiv
+
+- id: procon-2025
+  date: 2025-10
+  kind: award
+  text:
+    ja: 全国高等専門学校プログラミングコンテスト 2025 自由部門 敢闘賞（れしぷろえんじん！、5名のチーム）
+    en: Fighting Spirit Prize, Original Section, KOSEN Programming Contest 2025 (Recipro Engine!, team of five)
+  project: recipro-engine
+
+- id: sjciee-2025
+  date: 2025-09
+  kind: award
+  text:
+    ja: 令和7年度 電気・電子・情報関係学会四国支部連合大会 優秀発表賞（YUMI-TRACK）
+    en: Outstanding Presentation Award, 2025 Shikoku-Section Joint Convention of the Institutes of Electrical and Related Engineers (YUMI-TRACK)
+  project: yumi-track
+
+- id: leading-edge
+  date: 2025-08
+  kind: program
+  text:
+    ja: 経済産業省 AKATSUKI プロジェクト「LEADING EDGE 四国」の採択クリエータに（2026年1月まで）。テーマは「夜間環境に特化した360度視覚支援型移動ロボットの開発」
+    en: Selected as a creator of LEADING EDGE Shikoku, part of METI's AKATSUKI Project (until January 2026), with a 360° vision-assist mobile robot for night-time environments
+
+- id: ipsj
+  date: 2025-06
+  kind: other
+  text:
+    ja: 情報処理学会に入会
+    en: Joined the Information Processing Society of Japan (IPSJ)
+
+- id: yumi-track
+  date: 2025-05
+  kind: research
+  text:
+    ja: Python で、弓道の射形を採点する Web アプリ YUMI-TRACK の開発を始める
+    en: Started building YUMI-TRACK, a web app in Python that scores kyudo form
+  project: yumi-track
+
+- id: outstanding-student
+  date: 2025-04
+  kind: award
+  text:
+    ja: 弓削商船高専 情報工学科 優秀学生賞
+    en: Outstanding Student Award, Information Science and Technology Department, NIT Yuge College
+  url: https://www.yuge.ac.jp/archives/19683
+
+- id: it-passport
+  date: 2024-10
+  kind: education
+  text:
+    ja: IT パスポート試験に合格
+    en: Passed the Information Technology Passport Examination
+
+- id: kosen
+  date: 2024-04
+  kind: education
+  text:
+    ja: 国立弓削商船高等専門学校 情報工学科に入学
+    en: Entered the Information Science and Technology Department, National Institute of Technology, Yuge College

@@ -1,0 +1,111 @@
+# 論文・プレプリント / Publications — kept in step with researchmap (https://researchmap.jp/t_okugawa).
+#
+# id:      unique, lowercase letters, digits and hyphens
+# type:    paper (researchmap "published papers") | preprint (Jxiv, Zenodo, EdArXiv …)
+# title / authors / venue / note: one string for both languages, or `ja:` and `en:`
+# authors: names separated by ", " (your own name is shown in bold)
+# year:    required; date (YYYY-MM or YYYY-MM-DD) is optional and only used to sort the list
+# doi:     the part that starts with "10." (https://doi.org/ is added on the page); url: any other link
+# The page groups papers first, then preprints, newest first.
+
+- id: gcce-2026
+  type: paper
+  title: 'Re-Defining Vanishing Municipalities in Japan: A Multidimensional Clustering and SLM-Based Policy Insight Framework'
+  authors: Toma Okugawa, Keito Inoshita
+  venue: Proceedings of the IEEE 15th Global Conference on Consumer Electronics (IEEE GCCE 2026)
+  year: 2026
+  date: 2026-10
+  note:
+    ja: 採択・掲載予定（口頭発表）
+    en: To appear (oral presentation)
+
+- id: physics-education-2026
+  type: paper
+  title:
+    ja: ホイヘンスのサイクロイド振り子時計を用いた大学での教育実践
+    en: "Educational practice at university using Huygens' cycloidal pendulum clock"
+  authors:
+    ja: 牧山 隆洋, 石橋 治樹, 奥河 董馬, 久保 康幸
+    en: Takahiro Makiyama, Haruki Ishibashi, Toma Okugawa, Yasuyuki Kubo
+  venue:
+    ja: 日本物理教育学会, 74(3)
+    en: The Physics Education Society of Japan, 74(3)
+  year: 2026
+  date: 2026-09
+
+- id: kiwi-2026
+  type: paper
+  title:
+    ja: 'KiWi:公的機関における紙書類の安全な電子化を実現する個人情報管理・請求システムの提案'
+    en: 'KiWi: A Secure Information Request and Management System for Public Institutions through the Digitization of Paper-Based Personal Data'
+  authors:
+    ja: 瀬尾 敦生, 榎本 浩義, 石橋 治樹, 奥河 董馬, 濱田 捷聖
+    en: Atsuki Seo, Hiroyoshi Enomoto, Haruki Ishibashi, Toma Okugawa, Shosei Hamada
+  venue: 情報処理学会全国大会講演論文集
+  year: 2026
+  date: 2026-02-20
+
+- id: sjciee-2025
+  type: paper
+  title:
+    ja: リアルタイム姿勢推定による弓道フォーム評価手法の提案とWeb実装
+    en: Proposal and Web Implementation of a Kyudo Form Evaluation Method Based on Real-Time Pose Estimation
+  authors:
+    ja: 奥河 董馬, 益崎 智成, 牧山 隆洋
+    en: Toma Okugawa, Tomonari Masuzaki, Takahiro Makiyama
+  venue:
+    ja: 電気・電子・情報関係学会四国支部連合大会講演論文集
+    en: Shikoku-Section Joint Convention Record of the Institutes of Electrical and Related Engineers
+  year: 2025
+  date: 2025-09-22
+  note:
+    ja: 優秀発表賞
+    en: Outstanding Presentation Award
+
+- id: edarxiv-2026
+  type: preprint
+  title: 'Recognition Without Revenue: Designing a Failure-Case-Based Entrepreneurship Education Model for Japanese KOSEN Students'
+  authors: Toma Okugawa
+  venue: EdArXiv
+  year: 2026
+  date: 2026-09-12
+  doi: 10.35542/osf.io/dr9jx_v1
+
+- id: sd-retinex-2026
+  type: preprint
+  title: 'SD-Retinex: A Stable Retinex Method for Low-Light Image Enhancement Designed Around the Sigmoid Derivative'
+  authors: Toma Okugawa
+  venue: Zenodo
+  year: 2026
+  date: 2026-06-27
+  doi: 10.5281/zenodo.20945211
+
+- id: xcr-2025
+  type: preprint
+  title:
+    ja: 複素指数カーネルに基づく高速・構造保持型 Retinex手法 XCRの提案
+    en: 'A High-Speed and Structure-Preserving Retinex Method Based on a Complex Exponential Kernel: XCR'
+  authors:
+    ja: 奥河 董馬
+    en: Toma Okugawa
+  venue: Jxiv
+  year: 2025
+  date: 2025-11-20
+  doi: 10.51094/jxiv.1961
+  note:
+    en: In Japanese
+
+- id: fssr-2025
+  type: preprint
+  title:
+    ja: Fast Single-Scale Retinexの提案と低照度環境におけるリアルタイム骨格検出性能の評価
+    en: Proposal of Fast Single-Scale Retinex and Evaluation of Real-Time Human Pose Estimation Performance under Low-Light Conditions
+  authors:
+    ja: 奥河 董馬
+    en: Toma Okugawa
+  venue: Jxiv
+  year: 2025
+  date: 2025-11-12
+  doi: 10.51094/jxiv.1897
+  note:
+    en: In Japanese

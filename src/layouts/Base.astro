@@ -1,0 +1,89 @@
+---
+/**
+ * Every page: <head> (title, description, canonical, hreflang, Open Graph), skip link, header, main, footer.
+ * No client-side JavaScript and no web fonts.
+ */
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+import { href, otherLang, switchPath, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** Page title; the site name is appended. Leave empty on the home page. */
+  title?: string;
+  description?: string;
+  /** Path of this page in the other language. Defaults to the same path with /en/ added or removed. */
+  translation?: string;
+  /** False when the other language has no counterpart (the switch then goes to `translation`, a list page). */
+  translated?: boolean;
+  /** 'article' for a project or note page. */
+  ogType?: 'website' | 'article';
+  /** 404: not indexed and no canonical address of its own. */
+  noindex?: boolean;
+  /** Extra JSON-LD objects (data only, never executed). */
+  jsonld?: Record<string, unknown>[];
+}
+
+const { lang, title, description, translation, translated = true, ogType = 'website', noindex = false, jsonld = [] } =
+  Astro.props;
+const other = otherLang(lang);
+const path = Astro.url.pathname;
+const siteUrl = Astro.site ?? new URL('https://toma-okugawa.github.io');
+const name = site.name[lang];
+const fullTitle = title ? `${title} — ${name}` : `${name} | ${site.nameAlt[lang]}`;
+const desc = description ?? site.tagline[lang];
+const canonical = new URL(path, siteUrl).href;
+const otherPath = translation ?? switchPath(path, other);
+const jaPath = lang === 'ja' ? path : otherPath;
+const enPath = lang === 'en' ? path : otherPath;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    {
+      noindex ? (
+        <meta name="robots" content="noindex" />
+      ) : (
+        <>
+          <link rel="canonical" href={canonical} />
+          {translated && (
+            <>
+              <link rel="alternate" hreflang="ja" href={new URL(jaPath, siteUrl).href} />
+              <link rel="alternate" hreflang="en" href={new URL(enPath, siteUrl).href} />
+              <link rel="alternate" hreflang="x-default" href={new URL(jaPath, siteUrl).href} />
+            </>
+          )}
+        </>
+      )
+    }
+    <link rel="alternate" type="application/rss+xml" title={`${name} — Notes`} href={href(lang, '/rss.xml')} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name[lang]} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    {!noindex && <meta property="og:url" content={canonical} />}
+    <meta property="og:locale" content={lang === 'ja' ? 'ja_JP' : 'en_US'} />
+    {translated && <meta property="og:locale:alternate" content={lang === 'ja' ? 'en_US' : 'ja_JP'} />}
+    <meta name="twitter:card" content="summary" />
+    {jsonld.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(jsonld.length === 1 ? jsonld[0] : jsonld)} />}
+  </head>
+  <body>
+    <a class="skip" href="#main">{lang === 'ja' ? '本文へ移動' : 'Skip to content'}</a>
+    <Header lang={lang} switchTo={otherPath} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

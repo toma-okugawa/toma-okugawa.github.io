@@ -1,0 +1,73 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { entrySlug, hasTranslation } from '../lib/content';
+import { href, otherLang, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  entry: CollectionEntry<'projects'>;
+}
+const { lang, entry } = Astro.props;
+const t = ui[lang];
+const p = entry.data;
+const slug = entrySlug(entry.id);
+const other = otherLang(lang);
+const translated = await hasTranslation('projects', other, slug);
+const { Content } = await render(entry);
+const links = (['site', 'repo', 'paper', 'demo'] as const)
+  .filter((key) => p.links[key])
+  .map((key) => ({ label: t.project.linkLabels[key], url: p.links[key]! }));
+---
+
+<Base
+  lang={lang}
+  title={p.title}
+  description={p.summary}
+  ogType="article"
+  translated={translated}
+  translation={href(other, translated ? `/projects/${slug}/` : '/projects/')}
+>
+  <article>
+    <h1>{p.title}</h1>
+    <p class="lead">{p.summary}</p>
+    <dl class="facts">
+      <dt>{p.period ? t.project.period : t.project.year}</dt>
+      <dd class="mono">{p.period ?? p.year}</dd>
+      <dt>{t.project.role}</dt>
+      <dd>{p.role}</dd>
+      <dt>{t.project.category}</dt>
+      <dd>{t.category[p.category]}</dd>
+      <dt>{t.project.status}</dt>
+      <dd>{t.status[p.status]}</dd>
+      {
+        p.stack.length > 0 && (
+          <>
+            <dt>{t.project.stack}</dt>
+            <dd>{p.stack.join(', ')}</dd>
+          </>
+        )
+      }
+      {
+        links.length > 0 && (
+          <>
+            <dt>{t.project.links}</dt>
+            <dd>
+              <ul class="inline">
+                {links.map((l) => (
+                  <li>
+                    <a href={l.url}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </>
+        )
+      }
+    </dl>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <p class="back"><a href={href(lang, '/projects/')}>← {t.project.back}</a></p>
+</Base>

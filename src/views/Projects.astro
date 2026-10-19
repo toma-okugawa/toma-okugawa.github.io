@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { entrySlug, getProjectsByYear } from '../lib/content';
+import { href, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const years = await getProjectsByYear(lang);
+---
+
+<Base lang={lang} title={t.projects.title} description={t.projects.description}>
+  <h1>{t.projects.title}</h1>
+  <p class="muted">{t.projects.description}</p>
+  {
+    years.map(([year, projects]) => (
+      <section aria-labelledby={`y${year}`}>
+        <h2 id={`y${year}`} class="mono">
+          {year}
+        </h2>
+        <ul class="list">
+          {projects.map((p) => (
+            <li>
+              <a href={href(lang, `/projects/${entrySlug(p.id)}/`)}>{p.data.title}</a>
+              <p>{p.data.summary}</p>
+              <p class="meta">
+                {t.category[p.data.category]}
+                {p.data.stack.length > 0 && (
+                  <>
+                    {' · '}
+                    <span class="mono">{p.data.stack.join(', ')}</span>
+                  </>
+                )}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</Base>

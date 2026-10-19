@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toma-okugawa.github.io/sitemap-index.xml

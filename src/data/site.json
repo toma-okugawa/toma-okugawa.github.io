@@ -1,0 +1,20 @@
+{
+  "name": { "ja": "奥河 董馬", "en": "Toma Okugawa" },
+  "nameAlt": { "ja": "Toma Okugawa", "en": "奥河 董馬" },
+  "tagline": {
+    "ja": "古典的な Retinex による低照度コンピュータビジョン、端末内で動く AI アプリ、Web をつくるプログラマー。",
+    "en": "A programmer building low-light computer vision with classical Retinex, on-device AI apps, and the web."
+  },
+  "affiliation": {
+    "ja": "弓削商船高等専門学校 情報工学科 3年",
+    "en": "3rd-year student, Information Science and Technology Dept., NIT Yuge College"
+  },
+  "email": "",
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/toma-okugawa" },
+    { "label": "researchmap", "url": "https://researchmap.jp/t_okugawa" },
+    { "label": "ORCID", "url": "https://orcid.org/0009-0007-3553-0617" },
+    { "label": "J-GLOBAL", "url": "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601005443166280" },
+    { "label": { "ja": "アート（t-okugawa.studio）", "en": "Art (t-okugawa.studio)" }, "url": "https://t-okugawa.studio/" }
+  ]
+}

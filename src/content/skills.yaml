@@ -1,0 +1,57 @@
+# スキルと技術 / Skills and stack — the list on the About page.
+# Only what the projects on this site actually use. Shown by `order` (smaller first).
+#
+# id:    unique, lowercase letters, digits and hyphens
+# area:  ja: and en:
+# items: names, shown as one comma-separated line
+# used:  ja: and en: — where it was used
+
+- id: languages
+  order: 1
+  area:
+    ja: 言語
+    en: Languages
+  items: [Python, Dart, TypeScript, SQL]
+  used:
+    ja: Python は SD-Retinex と YUMI-TRACK、Dart は Kyudo AI、TypeScript は Web サイトと Kyudo AI のサーバー
+    en: Python for SD-Retinex and YUMI-TRACK, Dart for Kyudo AI, TypeScript for websites and the Kyudo AI server
+
+- id: vision
+  order: 2
+  area:
+    ja: 画像処理
+    en: Vision
+  items: [NumPy, OpenCV, MediaPipe, ML Kit Pose Detection]
+  used:
+    ja: 低照度画像強調（Retinex）と、弓道の姿勢推定
+    en: Low-light enhancement (Retinex) and pose estimation for kyudo
+
+- id: apps
+  order: 3
+  area:
+    ja: アプリ
+    en: Apps
+  items: [Flutter, SQLite (drift)]
+  used:
+    ja: Kyudo AI（Android）
+    en: Kyudo AI (Android)
+
+- id: web
+  order: 4
+  area:
+    ja: Web・サーバー
+    en: Web and server
+  items: [Astro, Streamlit, Cloudflare Workers, D1, Hono]
+  used:
+    ja: このサイトなどの Web サイト、YUMI-TRACK、Kyudo AI の部のサーバー
+    en: This site and other websites, YUMI-TRACK, the Kyudo AI club server
+
+- id: tools
+  order: 5
+  area:
+    ja: ツール
+    en: Tools
+  items: [Git, GitHub, GitHub Actions]
+  used:
+    ja: バージョン管理と、このサイトの公開
+    en: Version control and publishing this site

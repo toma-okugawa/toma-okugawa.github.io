@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { entrySlug, getNotes } from '../lib/content';
+import { href, isoDate, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const notes = await getNotes(lang);
+---
+
+<Base lang={lang} title={t.notes.title} description={t.notes.description}>
+  <h1>{t.notes.title}</h1>
+  <p class="muted">{t.notes.description} <a href={href(lang, '/rss.xml')}>{t.notes.rss}</a></p>
+  {
+    notes.length === 0 ? (
+      <p>{t.notes.empty}</p>
+    ) : (
+      <ul class="list">
+        {notes.map((n) => (
+          <li>
+            <time class="mono muted" datetime={isoDate(n.data.date)}>
+              {isoDate(n.data.date)}
+            </time>{' '}
+            <a href={href(lang, `/notes/${entrySlug(n.id)}/`)}>{n.data.title}</a>
+            <p>{n.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>

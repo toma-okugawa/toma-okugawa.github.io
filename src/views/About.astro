@@ -1,0 +1,61 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { getPage, getSkills, getTimeline } from '../lib/content';
+import { href, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+const page = await getPage(lang, 'about');
+const { Content } = await render(page);
+const timeline = await getTimeline();
+const skills = await getSkills();
+---
+
+<Base lang={lang} title={page.data.title} description={page.data.description}>
+  <h1>{page.data.title}</h1>
+  <div class="prose">
+    <Content />
+  </div>
+
+  <section aria-labelledby="timeline">
+    <h2 id="timeline">{t.about.timeline}</h2>
+    <ol class="timeline">
+      {
+        timeline.map(({ data: item }) => {
+          // a project page wins over an external source
+          const link = item.project ? href(lang, `/projects/${item.project}/`) : item.url;
+          return (
+            <li>
+              <time class="mono" datetime={item.date}>
+                {item.date}
+              </time>
+              <span>{link ? <a href={link}>{item.text[lang]}</a> : item.text[lang]}</span>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </section>
+
+  <section aria-labelledby="skills">
+    <h2 id="skills">{t.about.skills}</h2>
+    <dl class="facts">
+      {
+        skills.map(({ data: s }) => (
+          <>
+            <dt>{s.area[lang]}</dt>
+            <dd>
+              {s.items.join(', ')}
+              <br />
+              <span class="meta">{s.used[lang]}</span>
+            </dd>
+          </>
+        ))
+      }
+    </dl>
+  </section>
+</Base>

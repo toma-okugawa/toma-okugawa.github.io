@@ -1,0 +1,46 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { entrySlug, hasTranslation } from '../lib/content';
+import { href, isoDate, otherLang, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  entry: CollectionEntry<'notes'>;
+}
+const { lang, entry } = Astro.props;
+const t = ui[lang];
+const n = entry.data;
+const slug = entrySlug(entry.id);
+const other = otherLang(lang);
+const translated = await hasTranslation('notes', other, slug);
+const { Content } = await render(entry);
+---
+
+<Base
+  lang={lang}
+  title={n.title}
+  description={n.description}
+  ogType="article"
+  translated={translated}
+  translation={href(other, translated ? `/notes/${slug}/` : '/notes/')}
+>
+  <article>
+    <h1>{n.title}</h1>
+    <p class="meta">
+      <time class="mono" datetime={isoDate(n.date)}>{isoDate(n.date)}</time>
+      {
+        n.tags.length > 0 && (
+          <>
+            {' · '}
+            <span class="mono">{n.tags.join(', ')}</span>
+          </>
+        )
+      }
+    </p>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <p class="back"><a href={href(lang, '/notes/')}>← {t.note.back}</a></p>
+</Base>
