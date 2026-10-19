@@ -2,7 +2,9 @@
  * Post-build checks on dist/ (run after `npm run build`):
  *
  * 1. Every internal link resolves to a built file, and every #fragment to an id on the target page.
- *    Internal = root-relative (/…), relative (foo/), or absolute on the site's own origin. Links in the
+ *    Internal = root-relative (/…), relative (foo/), or absolute on the site's own origin. Absolute links
+ *    whose first path segment this build does not serve go to GitHub Pages project sites of other
+ *    repositories (e.g. /retinex-why-it-works/) and count as external. Links in the
  *    sitemap and RSS files are checked too. A link to a folder must end with "/" (trailingSlash: 'always').
  * 2. No page ships client-side JavaScript (JSON-LD data blocks are allowed).
  * 3. The home pages (HTML with inlined CSS) stay under 30 KB.
@@ -26,6 +28,9 @@ const files = readdirSync(dist, { recursive: true })
   .map((f) => String(f).split(sep).join('/'))
   .filter((f) => statSync(join(dist, f)).isFile());
 const fileSet = new Set(files);
+// First path segments this build serves. An absolute link on the site's origin whose first segment is not
+// one of them points to a GitHub Pages *project* site (another repository, e.g. /retinex-why-it-works/).
+const topLevel = new Set(files.map((f) => f.split('/')[0]));
 const pages = files.filter((f) => f.endsWith('.html'));
 const feeds = files.filter((f) => f.endsWith('.xml'));
 
@@ -75,6 +80,8 @@ function check(raw, from) {
   if (/^[a-z][a-z0-9+.-]*:/i.test(link)) {
     if (!link.startsWith(`${SITE}/`) && link !== SITE) return 0; // external
     url = new URL(link);
+    const first = decodeURIComponent(url.pathname).split('/')[1];
+    if (first && !topLevel.has(first)) return 0; // a project site from another repository
   } else {
     // relative to the page's own URL (the folder of index.html)
     const base = `${SITE}/${from.endsWith('index.html') ? posix.dirname(from) + '/' : from}`.replace(/\/\.\//, '/');
