@@ -7,7 +7,7 @@
 - コンテンツ管理: Markdown / YAML / JSON（`src/content/`・`src/data/`）— ファイルを編集するだけで更新できます
 - 言語: 日本語（`/`）・英語（`/en/`）
 - 配信: GitHub Pages（`main` への push で GitHub Actions が自動でビルド・公開）
-- デザイン: 1カラム、システムフォント、リンクの色は `#2563EB` のみ。ブラウザで動く JavaScript と Web フォントはありません
+- デザイン: 1カラム、システムフォント、リンクの色は `#2563EB`（ダークモードでは `#60A5FA`）のみ。ブラウザで動く JavaScript と Web フォントはありません
 
 ---
 
@@ -48,7 +48,8 @@ Windows の PowerShell では `npm` の代わりに `npm.cmd` を使ってくだ
 **下書き**: ファイル名が `_` で始まるファイル（例: `_draft.md`）は読み込まれません。
 frontmatter に `draft: true` を書いたプロジェクト・ノートは、`npm run dev` では表示され、`npm run build`（公開されるサイト）には含まれません。
 
-ファイル名は英小文字・数字・ハイフンだけにしてください。
+ファイル名は英小文字・数字・ハイフンだけにしてください。`ja/`・`en/` の中にサブフォルダは作れません（サブフォルダ内のファイルは読み込まれません）。
+frontmatter や YAML の項目名を書き間違えると（例: `darft: true`）、`npm run build` と `npm run check` がエラーで止まります。日付は実在する日付だけが使えます。
 YAML の値に `: `（コロン＋空白）や ` #` を含む場合、または値が `'` `"` `[` `{` `&` `*` `!` `|` `>` `%` `@` で始まる場合は、`title: '...'` のように引用符で囲みます（値の中の `'` は `''` と2つ重ねます）。
 
 ### プロジェクトを追加する
@@ -124,12 +125,19 @@ tags: [astro]
 
 `.github/workflows/deploy.yml` が、`main` への push（または Actions タブからの手動実行）で次を行います。
 
-1. [withastro/action](https://github.com/withastro/action) で `npm install` → `npm run build && npm run check:links`
+1. [withastro/action](https://github.com/withastro/action) で `npm install` → `npm run check && npm run build && npm run check:links`
 2. [actions/deploy-pages](https://github.com/actions/deploy-pages) で GitHub Pages に公開
 
-リンク切れがあるとビルドが失敗し、公開されません。
+型・コンテンツの定義のエラーや、サイト内のリンク切れ（外部リンクは対象外）があるとビルドが失敗し、公開されません。
 
-**初回だけ**: リポジトリの Settings → Pages → Build and deployment の Source を **GitHub Actions** にします。
+**初回だけ**:
+
+- リポジトリは **Public** にします。GitHub Free のアカウントでは、Private リポジトリから GitHub Pages は公開できません（GitHub Pro などの有料プランなら可能）。
+- リポジトリの Settings → Pages → Build and deployment の Source を **GitHub Actions** にします。これをしないと最初のデプロイが失敗します（その場合は設定後に Actions タブからワークフローを再実行）。コマンドで設定する場合:
+
+  ```bash
+  gh api -X POST repos/toma-okugawa/toma-okugawa.github.io/pages -f build_type=workflow
+  ```
 
 `toma-okugawa.github.io` はユーザーサイトなので、`astro.config.mjs` に `base` は不要です（`site: 'https://toma-okugawa.github.io'`）。
 

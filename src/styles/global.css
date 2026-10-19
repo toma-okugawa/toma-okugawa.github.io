@@ -59,7 +59,7 @@ body {
   }
 }
 
-:lang(ja) :is(h1, h2, h3, .lead) {
+:lang(ja) :is(h1, h2, h3) {
   word-break: auto-phrase;
 }
 
@@ -100,15 +100,18 @@ ol {
   padding-left: 1.25rem;
 }
 
+/* The underline stays (links must not rely on colour alone), but quieter, so runs of links do not stripe the page. */
 a {
   color: var(--accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
   text-underline-offset: 0.2em;
 }
 
 a:hover {
   text-decoration-thickness: 2px;
+  text-decoration-color: currentColor;
 }
 
 :focus-visible {
@@ -152,14 +155,25 @@ blockquote {
   color: var(--muted);
 }
 
-table {
-  display: block;
+/* Markdown tables are wrapped in .table-wrap (astro.config.mjs), which scrolls sideways on narrow screens,
+   so the table itself keeps its table semantics for screen readers. */
+.table-wrap {
   overflow-x: auto;
-  border-collapse: collapse;
-  font-size: 0.9375rem;
+  margin: 0 0 1rem;
 }
 
-th {
+.table-wrap > table {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+th,
+td:first-child {
   white-space: nowrap;
 }
 
@@ -169,6 +183,10 @@ td {
   border-bottom: 1px solid var(--rule);
   text-align: left;
   vertical-align: top;
+}
+
+:is(th, td):last-child {
+  padding-right: 0;
 }
 
 /* ---------- skip link ---------- */
@@ -212,9 +230,21 @@ td {
   font-size: 0.9375rem;
 }
 
+/* The padding enlarges the tap target without changing the header height (inline boxes do not grow the line). */
 .site-header nav a {
+  padding: 0.25rem 0;
   color: var(--muted);
   text-decoration: none;
+}
+
+/* The language switch is set apart from the section links by a thin rule. */
+.site-header .lang-switch {
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--rule);
+}
+
+.site-header .lang-switch a {
+  padding-inline: 0.25rem;
 }
 
 .site-header nav a:hover,
@@ -266,6 +296,15 @@ td {
   font-variant-numeric: tabular-nums;
 }
 
+/* A monospaced heading (the years on /projects/) or fact keeps the size of its context. */
+h2.mono {
+  font-size: 1.125rem;
+}
+
+.facts .mono {
+  font-size: inherit;
+}
+
 /* A list of projects / notes / publications: title line, then a short paragraph. */
 .list {
   margin: 0 0 1rem;
@@ -294,7 +333,19 @@ td {
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 0.125rem 1rem;
+  align-items: baseline;
   font-size: 0.9375rem;
+}
+
+/* The facts block ends the header of a project page. */
+article > .facts {
+  margin-bottom: 2rem;
+}
+
+/* Skills on the About page: each group has two lines, so the groups need clear space between them. */
+.facts.skills {
+  row-gap: 0.75rem;
+  line-height: 1.6;
 }
 
 .facts dt {
@@ -312,15 +363,16 @@ td {
   list-style: none;
 }
 
+/* Every date has the same width in the monospaced font, so max-content keeps the column aligned. */
 .timeline li {
   display: grid;
-  grid-template-columns: 4.75rem 1fr;
-  gap: 1rem;
-  margin: 0 0 0.5rem;
+  grid-template-columns: max-content 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin: 0 0 0.75rem;
 }
 
 .timeline time {
-  padding-top: 0.2em;
   color: var(--muted);
 }
 

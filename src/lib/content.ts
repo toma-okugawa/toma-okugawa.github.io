@@ -43,8 +43,9 @@ export async function getNotes(lang: Lang) {
 
 /** True when the same slug is published in the other language (for the language switch and hreflang). */
 export async function hasTranslation(collection: Localized, lang: Lang, slug: string) {
-  const entry = await getEntry(collection, `${lang}/${slug}`);
-  return entry != null && published(entry.data);
+  // getCollection, not getEntry: getEntry logs a warning for every note that exists in only one language
+  const id = `${lang}/${slug}`;
+  return (await getCollection(collection, (e) => e.id === id && published(e.data))).length > 0;
 }
 
 /** A long-form page (home.md, about.md) in one language. */

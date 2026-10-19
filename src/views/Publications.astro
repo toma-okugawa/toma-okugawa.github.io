@@ -10,7 +10,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = ui[lang];
 const groups = await getPublications();
-const researchmap = site.links.find((l) => l.label === 'researchmap')?.url ?? 'https://researchmap.jp/t_okugawa';
+const researchmap = pick(site.links.find((l) => l.label === 'researchmap')?.url, lang) || 'https://researchmap.jp/t_okugawa';
 const self = new Set([site.name.ja, site.name.en]);
 /** Text written in Japanese gets lang="ja" on the English page, and Latin-only text lang="en" on the Japanese page. */
 const textLang = (s: string) => {

@@ -3,7 +3,7 @@ title: About
 description: About Toma Okugawa — background, timeline, skills and stack.
 ---
 
-I'm Toma Okugawa (奥河 董馬). I grew up on Yuge, a small island in Kamijima, Ehime, and I'm a third-year student in the Information Science and Technology Department at the National Institute of Technology, Yuge College (KOSEN).
+I'm Toma Okugawa (奥河 董馬), a third-year student in the Information Science and Technology Department at the National Institute of Technology, Yuge College (KOSEN).
 
 I started programming in earnest in spring 2025. An interest in SQL brought me back to Python, and from May I built [YUMI-TRACK](/en/projects/yumi-track/), a web app that scores kyudo form. It led to a conference presentation and, later, the app [Kyudo AI](/en/projects/kyudo-ai/).
 

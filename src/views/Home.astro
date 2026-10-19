@@ -22,7 +22,8 @@ const person = {
   alternateName: '奥河 董馬',
   url: new URL(href(lang, '/'), siteUrl).href,
   affiliation: { '@type': 'CollegeOrUniversity', name: 'National Institute of Technology, Yuge College' },
-  sameAs: site.links.map((l) => l.url),
+  // the root address of each profile (a link may point to a language version on the page)
+  sameAs: site.links.map((l) => pick(l.url, 'ja')),
 };
 ---
 
@@ -85,24 +86,4 @@ const person = {
       </section>
     )
   }
-
-  <section aria-labelledby="links">
-    <h2 id="links">{t.links}</h2>
-    <ul class="inline">
-      {
-        site.links.map((l) => (
-          <li>
-            <a href={l.url}>{pick(l.label, lang)}</a>
-          </li>
-        ))
-      }
-      {
-        site.email && (
-          <li>
-            <a href={`mailto:${site.email}`}>{t.email}</a>
-          </li>
-        )
-      }
-    </ul>
-  </section>
 </Base>

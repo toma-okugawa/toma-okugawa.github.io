@@ -24,12 +24,13 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
-      - name: Install, build, check links and upload the site
+      - name: Install, check, build, check links and upload the site
         uses: withastro/action@v6
         with:
           node-version: 24
-          # The link check fails the build (and the deployment) on a broken internal link.
-          build-cmd: npm run build && npm run check:links
+          # astro check fails on a type or content-schema error, and the link check on a broken internal link;
+          # either one stops the deployment.
+          build-cmd: npm run check && npm run build && npm run check:links
 
   deploy:
     needs: build

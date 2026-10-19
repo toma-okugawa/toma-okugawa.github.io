@@ -34,9 +34,8 @@ export const ui = {
     allProjects: 'すべてのプロジェクト',
     latestNotes: '最近のノート',
     allNotes: 'すべてのノート',
-    links: 'リンク',
     email: 'メール',
-    projects: { title: 'プロジェクト', description: '研究・アプリ・Web など、これまでにつくったものの一覧です。' },
+    projects: { title: 'プロジェクト', description: '研究・アプリ・Web など、これまでにつくったものを新しい順に並べています。' },
     publications: {
       title: '論文・プレプリント',
       description: '論文とプレプリントの一覧です。最新の一覧は researchmap にあります。',
@@ -74,7 +73,6 @@ export const ui = {
     allProjects: 'All projects',
     latestNotes: 'Latest notes',
     allNotes: 'All notes',
-    links: 'Links',
     email: 'Email',
     projects: { title: 'Projects', description: 'Research, apps and web work, newest first.' },
     publications: {

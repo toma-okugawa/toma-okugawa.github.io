@@ -34,8 +34,8 @@ const items = (['projects', 'publications', 'notes', 'about'] as const).map((key
           </li>
         ))
       }
-      <li>
-        <a href={switchTo} hreflang={other} lang={other} aria-label={t.switchLabel}>{t.switchText}</a>
+      <li class="lang-switch">
+        <a href={switchTo} hreflang={other} lang={other} aria-label={`${t.switchText} ${t.switchLabel}`}>{t.switchText}</a>
       </li>
     </ul>
   </nav>

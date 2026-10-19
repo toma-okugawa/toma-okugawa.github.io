@@ -1,5 +1,5 @@
 ---
-title: XCR（eXponential-Cos Retinex）
+title: XCR (eXponential-Cos Retinex)
 summary: 複素指数カーネルにもとづく、高速で構造を保つ Retinex 手法。Jxiv でプレプリントを公開しました。
 year: 2025
 role: 単著

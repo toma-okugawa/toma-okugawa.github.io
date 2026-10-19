@@ -15,6 +15,9 @@
     { "label": "researchmap", "url": "https://researchmap.jp/t_okugawa" },
     { "label": "ORCID", "url": "https://orcid.org/0009-0007-3553-0617" },
     { "label": "J-GLOBAL", "url": "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601005443166280" },
-    { "label": { "ja": "アート（t-okugawa.studio）", "en": "Art (t-okugawa.studio)" }, "url": "https://t-okugawa.studio/" }
+    {
+      "label": { "ja": "アート (t-okugawa.studio)", "en": "Art (t-okugawa.studio)" },
+      "url": { "ja": "https://t-okugawa.studio/", "en": "https://t-okugawa.studio/en/" }
+    }
   ]
 }

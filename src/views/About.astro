@@ -43,7 +43,7 @@ const skills = await getSkills();
 
   <section aria-labelledby="skills">
     <h2 id="skills">{t.about.skills}</h2>
-    <dl class="facts">
+    <dl class="facts skills">
       {
         skills.map(({ data: s }) => (
           <>

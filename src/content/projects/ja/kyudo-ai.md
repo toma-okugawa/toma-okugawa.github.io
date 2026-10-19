@@ -6,8 +6,7 @@ role: 創業者・PM
 stack: [Flutter, Dart, ML Kit Pose Detection, SQLite (drift), Cloudflare Workers, D1]
 status: active
 category: app
-links:
-  site: https://kyudo-ai.com/
+# links: { site: https://kyudo-ai.com/ }  # kyudo-ai.com が表示できるようになったら戻す（2026-10-19 時点で DNS レコードがなく、つながらない）
 featured: true
 order: 2
 ---

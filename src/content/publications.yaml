@@ -32,6 +32,8 @@
     en: The Physics Education Society of Japan, 74(3)
   year: 2026
   date: 2026-09
+  note:
+    en: In Japanese
 
 - id: kiwi-2026
   type: paper
@@ -44,6 +46,8 @@
   venue: 情報処理学会全国大会講演論文集
   year: 2026
   date: 2026-02-20
+  note:
+    en: In Japanese
 
 - id: sjciee-2025
   type: paper
@@ -60,7 +64,7 @@
   date: 2025-09-22
   note:
     ja: 優秀発表賞
-    en: Outstanding Presentation Award
+    en: Outstanding Presentation Award; in Japanese
 
 - id: edarxiv-2026
   type: preprint

@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
     {
       site.links.map((l) => (
         <li>
-          <a href={l.url}>{pick(l.label, lang)}</a>
+          <a href={pick(l.url, lang)}>{pick(l.label, lang)}</a>
         </li>
       ))
     }

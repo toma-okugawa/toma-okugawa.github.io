@@ -1,5 +1,5 @@
 ---
-title: FSSR（Fast Single-Scale Retinex）
+title: FSSR (Fast Single-Scale Retinex)
 summary: 高速な Single-Scale Retinex を提案し、低照度環境でのリアルタイム骨格検出（姿勢推定）の性能を評価した研究。
 year: 2025
 role: 単著
